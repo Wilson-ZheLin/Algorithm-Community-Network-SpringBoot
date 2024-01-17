@@ -1,5 +1,6 @@
 package com.zhelin.community.controller;
 
+import com.zhelin.community.annotation.LoginRequired;
 import com.zhelin.community.entity.User;
 import com.zhelin.community.service.UserService;
 import com.zhelin.community.util.CommunityUtil;
@@ -43,11 +44,13 @@ public class UserController {
     @Autowired
     private HostHolder hostHolder;
 
+    @LoginRequired
     @RequestMapping(path = "/setting", method = RequestMethod.GET)
     public String getSettingPage() {
         return "/site/setting";
     }
 
+    @LoginRequired
     @RequestMapping(path = "/upload", method = RequestMethod.POST)
     public String uploadHeader(MultipartFile headerImage, Model model) {
         if(headerImage == null) {
@@ -97,6 +100,7 @@ public class UserController {
         }
     }
 
+    @LoginRequired
     @RequestMapping(path = "/changePassword", method = RequestMethod.POST)
     public String changePassword(String oldPassword, String newPassword, Model model) {
         if(StringUtils.isBlank(newPassword)) {

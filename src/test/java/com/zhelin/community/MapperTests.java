@@ -1,8 +1,10 @@
 package com.zhelin.community;
 
+import com.zhelin.community.dao.LoginTicketMapper;
 import com.zhelin.community.dao.UserMapper;
 import com.zhelin.community.dao.DiscussPostMapper;
 import com.zhelin.community.entity.DiscussPost;
+import com.zhelin.community.entity.LoginTicket;
 import com.zhelin.community.entity.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,6 +25,9 @@ public class MapperTests {
 
     @Autowired
     private DiscussPostMapper discussPostMapper;
+
+    @Autowired
+    private LoginTicketMapper loginTicketMapper;
 
     @Test
     public void testSelectUser() {
@@ -46,4 +51,26 @@ public class MapperTests {
         int rows = discussPostMapper.selectDiscussPostRows(149);
         System.out.println(rows);
     }
+
+    @Test
+    public void testInsertLoginTicket() {
+        LoginTicket ticket = new LoginTicket();
+        ticket.setUserId(101);
+        ticket.setTicket("abc");
+        ticket.setStatus(0);
+        ticket.setExpired(new java.util.Date(System.currentTimeMillis() + 1000 * 60 * 10));
+
+        loginTicketMapper.insertLoginTicket(ticket);
+    }
+
+    @Test
+    public void testSelectLoginTicket() {
+        LoginTicket ticket = loginTicketMapper.selectByTicket("abc");
+        System.out.println(ticket);
+
+        loginTicketMapper.updateStatus("abc", 1);
+        ticket = loginTicketMapper.selectByTicket("abc");
+        System.out.println(ticket);
+    }
+
 }

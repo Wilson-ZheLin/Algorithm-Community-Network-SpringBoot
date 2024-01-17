@@ -3,10 +3,13 @@ package com.zhelin.community.controller;
 import com.zhelin.community.entity.DiscussPost;
 import com.zhelin.community.entity.User;
 import com.zhelin.community.service.DiscussPostService;
+import com.zhelin.community.service.UserService;
 import com.zhelin.community.util.CommunityUtil;
 import com.zhelin.community.util.HostHolder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -23,6 +26,9 @@ public class DiscussPostController {
     @Autowired
     HostHolder hostHolder;
 
+    @Autowired
+    UserService userService;
+
     @RequestMapping(path="/add", method = RequestMethod.POST)
     @ResponseBody
     public String addDiscussPost(String title, String content) {
@@ -38,5 +44,15 @@ public class DiscussPostController {
         discussPostService.addDiscussPost(post);
 
         return CommunityUtil.getJSONString(0, "Publish success!");
+    }
+
+    @RequestMapping(path = "/detail/{discussPostId}", method = RequestMethod.GET)
+    public String getDiscussPost(@PathVariable("discussPostId") int id, Model model) {
+        DiscussPost post = discussPostService.findDiscussPostById(id);
+        model.addAttribute("post", post);
+        User user = userService.findUserById(post.getUserId());
+        model.addAttribute("user", user);
+
+        return "site/discuss-detail";
     }
 }

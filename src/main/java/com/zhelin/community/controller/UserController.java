@@ -73,8 +73,8 @@ public class UserController {
 
         // Update the avatar
         User user = hostHolder.getUser();
+        int userId = user.getId();
         String headerUrl = domain + contextPath + "/user/header/" + fileName;
-        int userId = hostHolder.getUser().getId();
         userService.updateHeader(userId, headerUrl);
 
         return "redirect:/index";
@@ -95,6 +95,26 @@ public class UserController {
         } catch (IOException e) {
             logger.error("Failed to read header image: " + fileName, e);
         }
+    }
+
+    @RequestMapping(path = "/changePassword", method = RequestMethod.POST)
+    public String changePassword(String oldPassword, String newPassword, Model model) {
+        if(StringUtils.isBlank(newPassword)) {
+            model.addAttribute("newPasswordMsg", "New password cannot be empty");
+            return "/site/setting";
+        }
+
+        User user = hostHolder.getUser();
+        int userId = user.getId();
+        String oldMd5 = CommunityUtil.md5(oldPassword + user.getSalt());
+        if(!oldMd5.equals(user.getPassword())) {
+            model.addAttribute("incorrectOldPassword", "The old password is incorrect");
+            return "/site/setting";
+        }
+        String newMd5 = CommunityUtil.md5(newPassword + user.getSalt());
+        userService.updatePassword(userId, newMd5);
+
+        return "redirect:/index";
     }
 
 }

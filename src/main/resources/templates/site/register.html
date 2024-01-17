@@ -63,7 +63,7 @@
 		<div class="main">
 			<div class="container pl-5 pr-5 pt-3 pb-3 mt-3 mb-3">
 				<h3 class="text-center text-info border-bottom pb-3">注&nbsp;&nbsp;册</h3>
-				<form class="mt-5" method="post" th:action="@{/register}">
+				<form class="mt-5" method="post" th:action="@{/register}" id="register-form">
 					<div class="form-group row">
 						<label for="username" class="col-sm-2 col-form-label text-right">账号:</label>
 						<div class="col-sm-10">
@@ -189,5 +189,19 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
 	<script th:src="@{/js/global.js}"></script>
 	<script th:src="@{/js/register.js}"></script>
+	<script>
+		document.addEventListener("DOMContentLoaded", function() {
+			var form = document.getElementById("register-form");
+			form.addEventListener("submit", function(event) {
+				var password = document.getElementById("password").value;
+				var confirmPassword = document.getElementById("confirm-password").value;
+
+				if (password !== confirmPassword) {
+					alert("Passwords do not match!");
+					event.preventDefault();
+				}
+			});
+		});
+	</script>
 </body>
 </html>

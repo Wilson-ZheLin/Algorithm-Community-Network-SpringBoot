@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Date;
 
 @Component
 public class LoginTicketInterceptor implements HandlerInterceptor {
@@ -26,10 +27,9 @@ public class LoginTicketInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
         String ticket = CookieUtil.getValue(request, "ticket");
-
         if (ticket != null) {
             LoginTicket loginTicket = userService.findLoginTicket(ticket);
-            if (loginTicket != null && loginTicket.getStatus() == 0 && loginTicket.getExpired().after(new java.util.Date())) {
+            if (loginTicket != null && loginTicket.getStatus() == 0 && loginTicket.getExpired().after(new Date())) {
                 User user = userService.findUserById(loginTicket.getUserId());
                 hostHolder.setUser(user);
             }

@@ -181,7 +181,7 @@
 	<script th:src="@{/js/global.js}"></script>
 	<script>
 		function refresh_kaptcha() {
-			let path = CONTENT_PATH + "/kaptcha?p=" + Math.random();
+			let path = CONTEXT_PATH + "/kaptcha?p=" + Math.random();
 			$("#kaptcha").attr("src", path);
 		}
 	</script>

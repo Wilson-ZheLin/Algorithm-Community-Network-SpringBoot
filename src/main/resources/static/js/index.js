@@ -8,7 +8,7 @@ function publish() {
 	let title = $("#recipient-name").val();
 	let content = $("#message-text").val();
 	$.post(
-		CONTENT_PATH + "/discuss/add",
+		CONTEXT_PATH + "/discuss/add",
 		{"title":title, "content":content},
 		function(data){
 			data = $.parseJSON(data);

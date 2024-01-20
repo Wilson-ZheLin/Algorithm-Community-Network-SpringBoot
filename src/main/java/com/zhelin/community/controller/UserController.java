@@ -2,6 +2,7 @@ package com.zhelin.community.controller;
 
 import com.zhelin.community.annotation.LoginRequired;
 import com.zhelin.community.entity.User;
+import com.zhelin.community.service.LikeService;
 import com.zhelin.community.service.UserService;
 import com.zhelin.community.util.CommunityUtil;
 import com.zhelin.community.util.HostHolder;
@@ -43,6 +44,9 @@ public class UserController {
 
     @Autowired
     private HostHolder hostHolder;
+
+    @Autowired
+    private LikeService likeService;
 
     @LoginRequired
     @RequestMapping(path = "/setting", method = RequestMethod.GET)
@@ -119,6 +123,19 @@ public class UserController {
         userService.updatePassword(userId, newMd5);
 
         return "redirect:/index";
+    }
+
+    // Personal page
+    @RequestMapping(path = "/profile/{userId}", method = RequestMethod.GET)
+    public String getProfilePage(@PathVariable("userId") int userId, Model model) {
+        User user = userService.findUserById(userId);
+        if (user == null) {
+            throw new RuntimeException("Can't find the user: " + userId);
+        }
+        model.addAttribute("user", user);
+        model.addAttribute("likeCount", likeService.findUserLikeCount(userId));
+
+        return "/site/profile";
     }
 
 }

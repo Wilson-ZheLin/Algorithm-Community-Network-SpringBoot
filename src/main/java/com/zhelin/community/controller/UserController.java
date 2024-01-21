@@ -2,8 +2,10 @@ package com.zhelin.community.controller;
 
 import com.zhelin.community.annotation.LoginRequired;
 import com.zhelin.community.entity.User;
+import com.zhelin.community.service.FollowService;
 import com.zhelin.community.service.LikeService;
 import com.zhelin.community.service.UserService;
+import com.zhelin.community.util.CommunityConstant;
 import com.zhelin.community.util.CommunityUtil;
 import com.zhelin.community.util.HostHolder;
 import org.apache.commons.lang3.StringUtils;
@@ -26,7 +28,7 @@ import java.io.OutputStream;
 
 @Controller
 @RequestMapping("/user")
-public class UserController {
+public class UserController implements CommunityConstant {
 
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
@@ -47,6 +49,9 @@ public class UserController {
 
     @Autowired
     private LikeService likeService;
+
+    @Autowired
+    private FollowService followService;
 
     @LoginRequired
     @RequestMapping(path = "/setting", method = RequestMethod.GET)
@@ -134,6 +139,18 @@ public class UserController {
         }
         model.addAttribute("user", user);
         model.addAttribute("likeCount", likeService.findUserLikeCount(userId));
+
+        long followeeCount = followService.getFolloweeCount(userId, ENTITY_TYPE_USER);
+        model.addAttribute("followeeCount", followeeCount);
+
+        long followerCount = followService.getFollowerCount(ENTITY_TYPE_USER, userId);
+        model.addAttribute("followerCount", followerCount);
+
+        boolean hasFollowed = false;
+        if (hostHolder.getUser() != null) {
+            hasFollowed = followService.hasFollowed(hostHolder.getUser().getId(), ENTITY_TYPE_USER, userId);
+        }
+        model.addAttribute("hasFollowed", hasFollowed);
 
         return "/site/profile";
     }

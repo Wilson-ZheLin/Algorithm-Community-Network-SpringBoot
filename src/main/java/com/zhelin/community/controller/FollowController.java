@@ -1,8 +1,10 @@
 package com.zhelin.community.controller;
 
 import com.zhelin.community.annotation.LoginRequired;
+import com.zhelin.community.entity.Event;
 import com.zhelin.community.entity.Page;
 import com.zhelin.community.entity.User;
+import com.zhelin.community.event.EventProducer;
 import com.zhelin.community.service.FollowService;
 import com.zhelin.community.service.UserService;
 import com.zhelin.community.util.CommunityConstant;
@@ -31,12 +33,25 @@ public class FollowController implements CommunityConstant {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private EventProducer eventProducer;
+
     @LoginRequired
     @RequestMapping(path = "/follow", method = RequestMethod.POST)
     @ResponseBody
     public String follow(int entityType, int entityId) {
         User user = hostHolder.getUser();
         followService.follow(user.getId(), entityType, entityId);
+
+        // trigger kafka event
+        Event event = new Event()
+                .setTopic(TOPIC_FOLLOW)
+                .setUserId(hostHolder.getUser().getId())
+                .setEntityType(entityType)
+                .setEntityId(entityId)
+                .setEntityUserId(entityId);
+        eventProducer.fireEvent(event);
+
         return CommunityUtil.getJSONString(0, "followed");
     }
 

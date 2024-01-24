@@ -1,8 +1,11 @@
 package com.zhelin.community.event;
 
 import com.alibaba.fastjson.JSONObject;
+import com.zhelin.community.entity.DiscussPost;
 import com.zhelin.community.entity.Event;
 import com.zhelin.community.entity.Message;
+import com.zhelin.community.service.DiscussPostService;
+import com.zhelin.community.service.ElasticSearchService;
 import com.zhelin.community.service.MessageService;
 import com.zhelin.community.util.CommunityConstant;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
@@ -23,6 +26,12 @@ public class EventConsumer implements CommunityConstant {
 
     @Autowired
     private MessageService messageService;
+
+    @Autowired
+    private DiscussPostService discussPostService;
+
+    @Autowired
+    private ElasticSearchService elasticSearchService;
 
     @KafkaListener(topics = {TOPIC_COMMENT, TOPIC_LIKE, TOPIC_FOLLOW})
     public void handleCommentMessage(ConsumerRecord record) {
@@ -53,6 +62,21 @@ public class EventConsumer implements CommunityConstant {
 
         message.setContent(JSONObject.toJSONString(content));
         messageService.addMessage(message);
+    }
+
+
+    // For elasticsearch
+    @KafkaListener(topics = {TOPIC_PUBLISH})
+    public void handlePublishMessage(ConsumerRecord record) {
+        if(record == null || record.value() == null) {
+            logger.error("Message is null!");
+        }
+        Event event = JSONObject.parseObject(record.value().toString(), Event.class);
+        if(event == null) {
+            logger.error("Message format error!");
+        }
+        DiscussPost post = discussPostService.findDiscussPostById(event.getEntityId());
+        elasticSearchService.saveDiscussPost(post);
     }
 
 }

@@ -1,9 +1,7 @@
 package com.zhelin.community.controller;
 
-import com.zhelin.community.entity.Comment;
-import com.zhelin.community.entity.DiscussPost;
-import com.zhelin.community.entity.Page;
-import com.zhelin.community.entity.User;
+import com.zhelin.community.entity.*;
+import com.zhelin.community.event.EventProducer;
 import com.zhelin.community.service.CommentService;
 import com.zhelin.community.service.DiscussPostService;
 import com.zhelin.community.service.LikeService;
@@ -29,16 +27,19 @@ public class DiscussPostController implements CommunityConstant {
     private DiscussPostService discussPostService;
 
     @Autowired
-    HostHolder hostHolder;
+    private HostHolder hostHolder;
 
     @Autowired
-    UserService userService;
+    private UserService userService;
 
     @Autowired
-    CommentService commentService;
+    private CommentService commentService;
 
     @Autowired
     private LikeService likeService;
+
+    @Autowired
+    private EventProducer eventProducer;
 
     @RequestMapping(path="/add", method = RequestMethod.POST)
     @ResponseBody
@@ -53,6 +54,14 @@ public class DiscussPostController implements CommunityConstant {
         post.setContent(content);
         post.setCreateTime(new Date());
         discussPostService.addDiscussPost(post);
+
+        // 触发发帖事件 (kafka + elasticsearch)
+        Event event = new Event()
+                .setTopic(TOPIC_PUBLISH)
+                .setUserId(user.getId())
+                .setEntityType(ENTITY_TYPE_POST)
+                .setEntityId(post.getId());
+        eventProducer.fireEvent(event);
 
         return CommunityUtil.getJSONString(0, "Publish success!");
     }

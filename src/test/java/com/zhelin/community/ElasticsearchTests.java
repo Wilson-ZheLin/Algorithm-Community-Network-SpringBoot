@@ -49,7 +49,7 @@ public class ElasticsearchTests {
     public void testInsertList() {
         int[] ids = {149, 146, 145, 138, 134, 133, 132, 131, 112, 111, 11, 103, 102, 101};
         for (int id : ids) {
-            discussPostRepository.saveAll(discussPostMapper.selectDiscussPosts(id, 0, 100));
+            discussPostRepository.saveAll(discussPostMapper.selectDiscussPosts(id, 0, 100, 0));
         }
     }
 

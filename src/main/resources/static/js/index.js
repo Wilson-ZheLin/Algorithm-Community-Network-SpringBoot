@@ -5,6 +5,12 @@ $(function(){
 function publish() {
 	$("#publishModal").modal("hide");
 
+	// let token = $("meta[name='_csrf']").attr("content");
+	// let header = $("meta[name='_csrf_header']").attr("content");
+	// $(document).ajaxSend(function (e, xhr, options) {
+	// 	xhr.setRequestHeader(header, token);
+	// })
+
 	let title = $("#recipient-name").val();
 	let content = $("#message-text").val();
 	$.post(

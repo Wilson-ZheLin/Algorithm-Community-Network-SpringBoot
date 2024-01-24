@@ -28,6 +28,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter implements Comm
         http.authorizeRequests()
                 .antMatchers("/user/setting", "/user/upload", "/discuss/add", "/comment/add/**", "/letter/**", "/notice/**", "/like", "/follow", "/unfollow")
                 .hasAnyAuthority(AUTHORITY_USER, AUTHORITY_MODERATOR, AUTHORITY_ADMIN)
+                .antMatchers("/discuss/top", "/discuss/wonderful")
+                .hasAnyAuthority(AUTHORITY_MODERATOR, AUTHORITY_ADMIN)
+                .antMatchers("/discuss/delete", "/data/**", "/actuator/**")
+                .hasAnyAuthority(AUTHORITY_ADMIN)
                 .anyRequest().permitAll()
                 .and().csrf().disable();
 

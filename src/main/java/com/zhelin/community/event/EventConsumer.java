@@ -70,13 +70,29 @@ public class EventConsumer implements CommunityConstant {
     public void handlePublishMessage(ConsumerRecord record) {
         if(record == null || record.value() == null) {
             logger.error("Message is null!");
+            return;
         }
         Event event = JSONObject.parseObject(record.value().toString(), Event.class);
         if(event == null) {
             logger.error("Message format error!");
+            return;
         }
         DiscussPost post = discussPostService.findDiscussPostById(event.getEntityId());
         elasticSearchService.saveDiscussPost(post);
+    }
+
+    @KafkaListener(topics = {TOPIC_DELETE})
+    public void handleDeleteMessage(ConsumerRecord record) {
+        if(record == null || record.value() == null) {
+            logger.error("Message is null!");
+            return;
+        }
+        Event event = JSONObject.parseObject(record.value().toString(), Event.class);
+        if(event == null) {
+            logger.error("Message format error!");
+            return;
+        }
+        elasticSearchService.deleteDiscussPost(event.getEntityId());
     }
 
 }

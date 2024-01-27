@@ -38,15 +38,4 @@ Features
 
 Demo
 ----
-
-
-
-Getting Started
----------------
-
-### Prerequisites
-* [Java 12](https://www.oracle.com/java/technologies/javase/jdk12-archive-downloads.html)
-* [Apache Maven](https://maven.apache.org/download.cgi)
-* [MySQL Server](https://dev.mysql.com/downloads/mysql/)
-* [Apache Kafka 2.13-3.6.1](https://kafka.apache.org/downloads)
-* [Elasticsearch 6.4.3](https://www.elastic.co/downloads/past-releases/elasticsearch-6-4-3)
+To be updated..

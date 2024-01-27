@@ -2,6 +2,8 @@
 
 This project is a sophisticated algorithm communication network platform, developed with the SpringBoot framework and SSM. It is specifically engineered to offer exceptional throughput, security, and responsive user experiences.
 
+![Screenshot 2024-01-27 at 13 49 11](https://github.com/Wilson-ZheLin/Algorithm-Community-Network-SpringBoot/assets/145169519/d47dd67b-44ac-4141-8de1-b43715380d34)
+
 ### Technology Stack:
 * **Framework & Architecture:** SpringBoot, Spring, Spring MVC
 * **Data Persistence:** MyBatis, MySQL
@@ -33,11 +35,6 @@ Features
 * **Redis for Data Analytics:** Utilizing `Redis` HyperLogLog and Bitmap for accurate, space-efficient UV and DAU analytics
 
 * **Exception Handling & Logging:** Global exception handling and Spring AOP for comprehensive service layer logging
-
-Architecture
-------------
-
-![Screenshot 2024-01-27 at 13 49 11](https://github.com/Wilson-ZheLin/Algorithm-Community-Network-SpringBoot/assets/145169519/d47dd67b-44ac-4141-8de1-b43715380d34)
 
 Demo
 ----

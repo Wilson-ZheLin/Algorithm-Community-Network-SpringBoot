@@ -1,7 +1,5 @@
 # Algorithm-Community-Network-SpringBoot
 
-Features
---------
 This project is a sophisticated algorithm communication network platform, developed with the SpringBoot framework and SSM, integrating various functional plugins. It is specifically engineered to offer exceptional throughput, security, and responsive user experiences. Advanced features like Kafka for system notifications and a multi-level caching system combining Caffeine and Redis ensure the platform can handle extremely high volumes of data and user interactions with minimal latency.
 
 ### Technology Stack:
@@ -15,8 +13,9 @@ This project is a sophisticated algorithm communication network platform, develo
 * **Multi-Thread Scheduling:** Spring Quartz, Redis
 * **Logging & Exception Handling:** Spring AOP
 
-Architecture
-------------
+Features
+--------
+
 * **User Authentication:** Secure password with **salting** and **MD5** encryption, **Kaptcha** for captcha, and Spring Email for activation
 
 * **Multi-Level Caching:** Adopted a **multi-level cache** form of local cache (`Caffeine`) + second-level cache (`Redis`) + database
@@ -34,6 +33,10 @@ Architecture
 * **Redis for Data Analytics:** Utilizing `Redis` HyperLogLog and Bitmap for accurate, space-efficient UV and DAU analytics
 
 * **Exception Handling & Logging:** Global exception handling and Spring AOP for comprehensive service layer logging
+
+Architecture
+------------
+
 
 
 Demo

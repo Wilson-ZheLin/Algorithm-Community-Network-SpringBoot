@@ -1,4 +1,4 @@
-# Algorithm-Community-Network-SpringBoot
+# Algorithm Community Network - Spring Boot
 
 This project is a sophisticated algorithm communication network platform, developed with the SpringBoot framework and SSM. It is specifically engineered to offer exceptional throughput, security, and responsive user experiences.
 

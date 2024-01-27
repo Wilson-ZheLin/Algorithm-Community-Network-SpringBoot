@@ -1,6 +1,6 @@
 # Algorithm-Community-Network-SpringBoot
 
-This project is a sophisticated algorithm communication network platform, developed with the SpringBoot framework and SSM, integrating various functional plugins. It is specifically engineered to offer exceptional throughput, security, and responsive user experiences. Advanced features like Kafka for system notifications and a multi-level caching system combining Caffeine and Redis ensure the platform can handle extremely high volumes of data and user interactions with minimal latency.
+This project is a sophisticated algorithm communication network platform, developed with the SpringBoot framework and SSM. It is specifically engineered to offer exceptional throughput, security, and responsive user experiences.
 
 ### Technology Stack:
 * **Framework & Architecture:** SpringBoot, Spring, Spring MVC

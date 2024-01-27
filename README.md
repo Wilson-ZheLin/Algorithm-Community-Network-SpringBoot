@@ -37,7 +37,7 @@ Features
 Architecture
 ------------
 
-
+![Screenshot 2024-01-27 at 13 49 11](https://github.com/Wilson-ZheLin/Algorithm-Community-Network-SpringBoot/assets/145169519/d47dd67b-44ac-4141-8de1-b43715380d34)
 
 Demo
 ----

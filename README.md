@@ -2,7 +2,7 @@
 
 This project is a sophisticated algorithm communication network platform, developed with the SpringBoot framework and SSM. It is specifically engineered to offer exceptional throughput, security, and responsive user experiences.
 
-![Screenshot 2024-01-27 at 13 49 11](https://github.com/Wilson-ZheLin/Algorithm-Community-Network-SpringBoot/assets/145169519/d47dd67b-44ac-4141-8de1-b43715380d34)
+![Screenshot 2024-03-02 at 16 58 29](https://github.com/Wilson-ZheLin/Algorithm-Community-Network-SpringBoot/assets/145169519/075a219a-0aae-4823-a007-7e213d8ba92e)
 
 ### Technology Stack:
 * **Framework & Architecture:** SpringBoot, Spring, Spring MVC

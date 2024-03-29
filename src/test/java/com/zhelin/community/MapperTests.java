@@ -34,10 +34,10 @@ public class MapperTests {
         User user = userMapper.selectById(101);
         System.out.println(user);
 
-        user = userMapper.selectByName("liubei");
+        user = userMapper.selectByName("zhelin");
         System.out.println(user);
 
-        user = userMapper.selectByEmail("nowcoder101@sina.com");
+        user = userMapper.selectByEmail("lin.zhe3@northeastern.edu");
         System.out.println(user);
     }
 

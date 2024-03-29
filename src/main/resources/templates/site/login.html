@@ -3,72 +3,72 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<link rel="icon" href="https://static.nowcoder.com/images/logo_87_87.png"/>
+	<link rel="icon" href="https://brand.northeastern.edu/global/assets/favicon/favicon-32x32.png?v=2"/>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" crossorigin="anonymous">
 	<link rel="stylesheet" th:href="@{/css/global.css}" />
 	<link rel="stylesheet" th:href="@{/css/login.css}" />
-	<title>牛客网-登录</title>
+	<title>Login</title>
 </head>
 <body>
 	<div class="nk-container">
-		<!-- 头部 -->
+		<!-- Header -->
 		<header class="bg-dark sticky-top" th:replace="index::header"></header>
 
-		<!-- 内容 -->
+		<!-- Content -->
 		<div class="main">
 			<div class="container pl-5 pr-5 pt-3 pb-3 mt-3 mb-3">
-				<h3 class="text-center text-info border-bottom pb-3">登&nbsp;&nbsp;录</h3>
+				<h3 class="text-center text-info border-bottom pb-3">Login</h3>
 				<form class="mt-5" th:action="@{/login}" method="post">
 					<div class="form-group row">
-						<label for="username" class="col-sm-2 col-form-label text-right">账号:</label>
+						<label for="username" class="col-sm-2 col-form-label text-right">Account:</label>
 						<div class="col-sm-10">
-							<input type="text" th:class="|form-control ${usernameMsg!=null?'is-invalid':''}|" th:value="${param.username}" id="username" placeholder="请输入您的账号!" required autofocus name="username">
+							<input type="text" th:class="|form-control ${usernameMsg!=null?'is-invalid':''}|" th:value="${param.username}" id="username" placeholder="Please enter your account" required autofocus name="username">
 							<div class="invalid-feedback" th:text="${usernameMsg}">
-								该账号不存在!
+								This account does not exist!
 							</div>
 						</div>
 					</div>
 					<div class="form-group row mt-4">
-						<label for="password" class="col-sm-2 col-form-label text-right">密码:</label>
+						<label for="password" class="col-sm-2 col-form-label text-right">Password:</label>
 						<div class="col-sm-10">
-							<input type="password" th:class="|form-control ${passwordMsg!=null?'is-invalid':''}|" th:value="${param.password}" id="password" placeholder="请输入您的密码!" required name="password">
+							<input type="password" th:class="|form-control ${passwordMsg!=null?'is-invalid':''}|" th:value="${param.password}" id="password" placeholder="Please enter your password" required name="password">
 							<div class="invalid-feedback" th:text="${passwordMsg}">
-								密码长度不能小于8位!
+								The length of password must be at least 8!
 							</div>							
 						</div>
 					</div>
 					<div class="form-group row mt-4">
-						<label for="verifycode" class="col-sm-2 col-form-label text-right">验证码:</label>
+						<label for="verifycode" class="col-sm-2 col-form-label text-right">Captcha:</label>
 						<div class="col-sm-6">
-							<input type="text" th:class="|form-control ${codeMsg!=null?'is-invalid':''}|" id="verifycode" placeholder="请输入验证码!" required name="code">
+							<input type="text" th:class="|form-control ${codeMsg!=null?'is-invalid':''}|" id="verifycode" placeholder="Please enter the captcha" required name="code">
 							<div class="invalid-feedback" th:text="${codeMsg}">
-								验证码不正确!
+								The captcha is invalid!
 							</div>
 						</div>
 						<div class="col-sm-4">
 							<img th:src="@{/kaptcha}" style="width:100px;height:40px;" class="mr-2" id="kaptcha"/>
-							<a href="javascript:refresh_kaptcha();" class="font-size-12 align-bottom">刷新验证码</a>
+							<a href="javascript:refresh_kaptcha();" class="font-size-12 align-bottom">refresh</a>
 						</div>
 					</div>				
 					<div class="form-group row mt-4">
 						<div class="col-sm-2"></div>
 						<div class="col-sm-10">
 							<input type="checkbox" id="remember-me" th:checked="${param.rememberMe}" name="rememberMe">
-							<label class="form-check-label" for="remember-me">记住我</label>
-							<a href="forget.html" class="text-danger float-right">忘记密码?</a>
+							<label class="form-check-label" for="remember-me">Remember me</label>
+							<a href="forget.html" class="text-danger float-right">Forget password</a>
 						</div>
 					</div>				
 					<div class="form-group row mt-4">
 						<div class="col-sm-2"></div>
 						<div class="col-sm-10 text-center">
-							<button type="submit" class="btn btn-info text-white form-control">立即登录</button>
+							<button type="submit" class="btn btn-info text-white form-control">Login</button>
 						</div>
 					</div>
 				</form>				
 			</div>
 		</div>
 
-		<!-- 尾部 -->
+		<!-- footer -->
 		<footer class="bg-dark" th:replace="index::footer"></footer>
 	</div>
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>

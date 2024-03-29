@@ -3,31 +3,31 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<link rel="icon" href="https://static.nowcoder.com/images/logo_87_87.png"/>
+	<link rel="icon" href="https://brand.northeastern.edu/global/assets/favicon/favicon-32x32.png?v=2"/>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" crossorigin="anonymous">
 	<link rel="stylesheet" th:href="@{/css/global.css}" />
-	<title>牛客网-操作结果</title>
+	<title>Operate Result</title>
 </head>
 <body class="bg-white">
 	<div class="nk-container">
-		<!-- 头部 -->
+		<!-- Header -->
 		<header class="bg-dark sticky-top" th:replace="index::header"></header>
 
-		<!-- 内容 -->
+		<!-- Content -->
 		<div class="main">
 			<div class="container mt-5">
 				<div class="jumbotron">
-					<p class="lead" th:text="${msg}">您的账号已经激活成功,可以正常使用了!</p>
+					<p class="lead" th:text="${msg}">Activation successful!</p>
 					<hr class="my-4">
 					<p>
-						系统会在 <span id="seconds" class="text-danger">8</span> 秒后自动跳转,
-						您也可以点此 <a id="target" th:href="@{${target}}" class="text-primary">链接</a>, 手动跳转!
+						System will automatically redirect in <span id="seconds" class="text-danger">8</span> seconds,
+						You can click the <a id="target" th:href="@{${target}}" class="text-primary">link</a> to redirect!
 					</p>
 				</div>
 			</div>
 		</div>
 
-		<!-- 尾部 -->
+		<!-- footer -->
 		<footer class="bg-dark" th:replace="index::footer"></footer>
 	</div>
 

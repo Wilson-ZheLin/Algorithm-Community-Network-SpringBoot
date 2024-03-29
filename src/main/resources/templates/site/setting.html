@@ -3,32 +3,32 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<link rel="icon" href="https://static.nowcoder.com/images/logo_87_87.png"/>
+	<link rel="icon" href="https://brand.northeastern.edu/global/assets/favicon/favicon-32x32.png?v=2"/>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" crossorigin="anonymous">
 	<link rel="stylesheet" th:href="@{/css/global.css}" />
 	<link rel="stylesheet" th:href="@{/css/login.css}" />
-	<title>牛客网-账号设置</title>
+	<title>Settings</title>
 </head>
 <body>
 	<div class="nk-container">
-		<!-- 头部 -->
+		<!-- Header -->
 		<header class="bg-dark sticky-top" th:replace="index::header"></header>
 
-		<!-- 内容 -->
+		<!-- Content -->
 		<div class="main">
 			<div class="container p-5 mt-3 mb-3">
-				<!-- 上传头像 -->
-				<h6 class="text-left text-info border-bottom pb-2">上传头像</h6>
+				<!-- Upload image -->
+				<h6 class="text-left text-info border-bottom pb-2">Upload an image</h6>
 				<form class="mt-5" method="post" enctype="multipart/form-data" th:action="@{/user/upload}">
 					<div class="form-group row mt-4">
-						<label for="head-image" class="col-sm-2 col-form-label text-right">选择头像:</label>
+						<label for="head-image" class="col-sm-2 col-form-label text-right">Select an image</label>
 						<div class="col-sm-10">
 							<div class="custom-file">
 								<input type="file" th:class="|custom-file-input ${error!=null?'is-invalid':''}|"
 									   id="head-image" name="headerImage" lang="es" required="">
-								<label class="custom-file-label" for="head-image" data-browse="文件">选择一张图片</label>
+								<label class="custom-file-label" for="head-image" data-browse="file">Select an image</label>
 								<div class="invalid-feedback" th:text="${error}">
-									未选择图片!
+									You need to select an image!
 								</div>
 							</div>
 						</div>
@@ -36,51 +36,51 @@
 					<div class="form-group row mt-4">
 						<div class="col-sm-2"></div>
 						<div class="col-sm-10 text-center">
-							<button type="submit" class="btn btn-info text-white form-control">立即上传</button>
+							<button type="submit" class="btn btn-info text-white form-control">Upload</button>
 						</div>
 					</div>
 				</form>
-				<!-- 修改密码 -->
-				<h6 class="text-left text-info border-bottom pb-2 mt-5">修改密码</h6>
+				<!-- Change password -->
+				<h6 class="text-left text-info border-bottom pb-2 mt-5">Reset password</h6>
 				<form class="mt-5" method="post" th:action="@{/user/changePassword}" id="change-password-form">
 					<div class="form-group row mt-4">
-						<label for="old-password" class="col-sm-2 col-form-label text-right">原密码:</label>
+						<label for="old-password" class="col-sm-2 col-form-label text-right">Original password:</label>
 						<div class="col-sm-10">
-							<input type="password" th:class="|form-control ${incorrectOldPassword!=null?'is-invalid':''}|" id="old-password" placeholder="请输入原始密码!" name="oldPassword" required>
+							<input type="password" th:class="|form-control ${incorrectOldPassword!=null?'is-invalid':''}|" id="old-password" placeholder="Please enter your original password" name="oldPassword" required>
 							<div class="invalid-feedback" th:text="${incorrectOldPassword}">
-								密码长度不能小于8位!
+								The length of password must be at least 8!
 							</div>							
 						</div>
 					</div>
 					<div class="form-group row mt-4">
-						<label for="new-password" class="col-sm-2 col-form-label text-right">新密码:</label>
+						<label for="new-password" class="col-sm-2 col-form-label text-right">New password:</label>
 						<div class="col-sm-10">
-							<input type="password" th:class="|form-control ${newPasswordMsg!=null?'is-invalid':''}|" id="new-password" placeholder="请输入新的密码!" name="newPassword" required>
+							<input type="password" th:class="|form-control ${newPasswordMsg!=null?'is-invalid':''}|" id="new-password" placeholder="Please enter a new password" name="newPassword" required>
 							<div class="invalid-feedback" th:text="${newPasswordMsg}">
-								密码长度不能小于8位!
+								The length of password must be at least 8!
 							</div>							
 						</div>
 					</div>
 					<div class="form-group row mt-4">
-						<label for="confirm-password" class="col-sm-2 col-form-label text-right">确认密码:</label>
+						<label for="confirm-password" class="col-sm-2 col-form-label text-right">Confirm password:</label>
 						<div class="col-sm-10">
-							<input type="password" class="form-control" id="confirm-password" placeholder="再次输入新密码!" name="confirmPassword" required>
+							<input type="password" class="form-control" id="confirm-password" placeholder="Please confirm the password" name="confirmPassword" required>
 							<div class="invalid-feedback">
-								两次输入的密码不一致!
+								The two passwords do not match!
 							</div>								
 						</div>
 					</div>				
 					<div class="form-group row mt-4">
 						<div class="col-sm-2"></div>
 						<div class="col-sm-10 text-center">
-							<button type="submit" class="btn btn-info text-white form-control">立即保存</button>
+							<button type="submit" class="btn btn-info text-white form-control">Save</button>
 						</div>
 					</div>
 				</form>				
 			</div>
 		</div>
 
-		<!-- 尾部 -->
+		<!-- footer -->
 		<footer class="bg-dark" th:replace="index::footer"></footer>
 	</div>
 

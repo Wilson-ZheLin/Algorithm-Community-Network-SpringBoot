@@ -133,6 +133,26 @@ public class DiscussPostController implements CommunityConstant {
         return "site/discuss-detail";
     }
 
+    @RequestMapping(path = "/posts/{userId}", method = RequestMethod.GET)
+    public String getProfilePage(@PathVariable("userId") int userId, Model model) {
+        List<DiscussPost> discussPosts = discussPostService.findDiscussPostByUser(userId);
+        List<Map<String, Object>> postsList = new ArrayList<>();
+        if (discussPosts != null && discussPosts.size() != 0) {
+            for (DiscussPost post : discussPosts) {
+                Map<String, Object> postMap = new HashMap<>();
+                postMap.put("id", post.getId());
+                postMap.put("title", post.getTitle());
+                postMap.put("content", post.getContent());
+                postMap.put("createTime", post.getCreateTime());
+                postMap.put("likeCount", likeService.findEntityLikeCount(ENTITY_TYPE_POST, post.getId()));
+                postsList.add(postMap);
+            }
+        }
+        model.addAttribute("discussPosts", postsList);
+        model.addAttribute("user", userId);
+        return "/site/my-post";
+    }
+
     @RequestMapping(path = "/top", method = RequestMethod.POST)
     @ResponseBody
     public String setTop(int id) {

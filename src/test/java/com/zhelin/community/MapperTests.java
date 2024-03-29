@@ -53,6 +53,14 @@ public class MapperTests {
     }
 
     @Test
+    public void testFindPosyByUser() {
+        List<DiscussPost> list = discussPostMapper.selectDiscussPostByUser(101);
+        for(DiscussPost post : list) {
+            System.out.println(post);
+        }
+    }
+
+    @Test
     public void testInsertLoginTicket() {
         LoginTicket ticket = new LoginTicket();
         ticket.setUserId(101);

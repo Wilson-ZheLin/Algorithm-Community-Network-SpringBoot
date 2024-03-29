@@ -17,19 +17,19 @@
 		<div class="main">
 			<div class="container">
 				<!-- selection -->
-<!--				<div class="position-relative">-->
-<!--					<ul class="nav nav-tabs">-->
-<!--						<li class="nav-item">-->
-<!--							<a class="nav-link active" href="profile.html">Personal Information</a>-->
-<!--						</li>-->
-<!--						<li class="nav-item">-->
-<!--							<a class="nav-link" href="my-post.html">Posts</a>-->
-<!--						</li>-->
+				<div class="position-relative">
+					<ul class="nav nav-tabs">
+						<li class="nav-item">
+							<a class="nav-link active" href="#">Personal Information</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" th:href="@{|/discuss/posts/${user.id}|}">Posts</a>
+						</li>
 <!--						<li class="nav-item">-->
 <!--							<a class="nav-link" href="my-reply.html">Replies</a>-->
 <!--						</li>-->
-<!--					</ul>-->
-<!--				</div>-->
+					</ul>
+				</div>
 				<!-- Personal Information -->
 				<div class="media mt-5">
 					<img th:src="${user.headerUrl}" class="align-self-start mr-4 rounded-circle" alt="User avatar" style="width:50px;">

@@ -25,4 +25,5 @@ public interface DiscussPostMapper {
 
     int updateScore(int id, double score);
 
+    List<DiscussPost> selectDiscussPostByUser(int userId);
 }

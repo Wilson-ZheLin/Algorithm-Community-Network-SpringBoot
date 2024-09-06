@@ -1,6 +1,6 @@
-# Algorithm Community Network Platform-SpringBoot
+# OrbitHub Platform-SpringBoot
 
-This project is a sophisticated algorithm communication network platform, developed with the SpringBoot framework and SSM. It is specifically engineered to offer exceptional throughput, security, and responsive user experiences.
+This project is a sophisticated social media network platform, developed with the SpringBoot framework and SSM. It is specifically engineered to offer exceptional throughput, security, and responsive user experiences.
 
 ![Screenshot 2024-03-02 at 16 58 29](https://github.com/Wilson-ZheLin/Algorithm-Community-Network-SpringBoot/assets/145169519/075a219a-0aae-4823-a007-7e213d8ba92e)
 
